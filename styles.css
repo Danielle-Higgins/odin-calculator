@@ -1,0 +1,76 @@
+/* CSS reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #da8a8b;
+}
+
+/* Styles for calculator container */
+.calculator {
+    background-color: #101b39;
+    width: 400px;
+    height: 560px;
+    margin: 60px auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 5px black;
+    padding: 40px;
+}
+
+/* Styles for the display */
+.display {
+    background-color: #fff;
+    height: 85px;
+    border-radius: 5px;
+    font-size: 30px;
+    margin-bottom: 25px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+/* Styles for the buttons */
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.buttons button {
+    font-size: 20px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.all-clear {
+    background-color: #a44322;
+    color: #fff;
+}
+
+.number, .decimal {
+    background-color: #4a478a;
+    color: #fff;
+}
+
+.operands {
+    background-color: #f8bc04;
+    color: #fff;
+}
+
+/* Styles for the footer */
+.footer {
+    background-color: #f5d5e0;
+    height: 65px;
+    font-size: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
