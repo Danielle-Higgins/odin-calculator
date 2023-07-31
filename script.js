@@ -48,6 +48,9 @@ function operate(operator, num1, num2) {
     }
     // set currentOperand to be the result so we can operate on the result and not the initial currentOperand
     currentOperand = result
+    // set prevOperand to be empty so after equals sign we can evaluate the correct results
+    prevOperand = ""
+
     return result
 }
 
