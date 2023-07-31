@@ -26,12 +26,21 @@ body {
     background-color: #fff;
     height: 85px;
     border-radius: 5px;
-    font-size: 30px;
     margin-bottom: 25px;
+    text-align: right;
 
     display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: flex-start;
+}
+
+.display .prev {
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.display .current {
+    font-size: 35px;
 }
 
 /* Styles for the buttons */
@@ -44,6 +53,7 @@ body {
 }
 
 .buttons button {
+    color: #fff;
     font-size: 20px;
     width: 70px;
     height: 70px;
@@ -54,17 +64,18 @@ body {
 
 .all-clear {
     background-color: #a44322;
-    color: #fff;
+}
+
+.delete {
+    background-color: #155e89;
 }
 
 .number, .decimal {
     background-color: #4a478a;
-    color: #fff;
 }
 
 .operator, .equals {
     background-color: #f8bc04;
-    color: #fff;
 }
 
 /* Styles for the footer */

@@ -1,72 +1,97 @@
-const display = document.querySelector(".display")
 const numbers = document.querySelectorAll(".number")
 const operators = document.querySelectorAll(".operator")
+const previous = document.querySelector(".prev")
+const current = document.querySelector(".current")
 const equals = document.querySelector(".equals")
 
+// 1. Create functions for all of the basic math operators you typically find on simple calculators
+
 function add(num1, num2) {
-    let add = parseFloat(num1) + parseFloat(num2)
-    return add
+    return parseFloat(num1) + parseFloat(num2)
 }
 
 function subtract(num1, num2) {
-    let sub = parseFloat(num1) - parseFloat(num2)
-    return sub
+    return parseFloat(num1) - parseFloat(num2)
 }
 
 function multiply(num1, num2) {
-    let mult = parseFloat(num1) * parseFloat(num2)
-    return mult
+    return parseFloat(num1) * parseFloat(num2)
 }
 
 function divide(num1, num2) {
-    let divide = parseFloat(num1) / parseFloat(num2)
-    return divide
+    return parseFloat(num1) / parseFloat(num2)
 }
+
+// 3. Create a new function operate that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
 
 function operate(operator, num1, num2) {
-    switch (operator) {
+    let result = 0
+    switch(operator) {
         case "+":
-            return add(num1, num2)
+            result = add(num1, num2)
+            break
         case "-":
-            return subtract(num1, num2)
+            result = subtract(num1, num2)
+            break
         case "*":
-            return multiply(num1, num2)
+            result = multiply(num1, num2)
+            break
         case "/":
-            return divide(num1, num2)
+            result = divide(num1, num2)
+            break
     }
+    return result
 }
 
-let firstNum
-let secondNum
-let sign
+// 2. Create three variables for each of the parts of a calculator operation. You’ll use these variables to update your display later.
+let prevOperand = ""
+let currentOperand = ""
+let sign = ""
+let result = 0
 
-// create the functions that populate the display when the number buttons are clicked
-// for each number button
+// 5. Create the functions that populate the display when you click the number buttons. You should be storing the ‘display value’ in a variable somewhere for use.
+
+// appends the operands to each other
+function append(number) {
+    currentOperand += number
+    //console.log(currentOperand)
+}
+
+// chooses the operator the user wants to use
+function chooseOperator(operator) {
+    sign = operator
+    //console.log(sign)
+    prevOperand = currentOperand
+    //console.log(prevOperand)
+    currentOperand = ""
+}
+
+// update the display
+function updateDisplay() {
+    current.textContent = currentOperand
+    previous.textContent = prevOperand + " " + sign + " " + currentOperand
+}
+
 numbers.forEach(number => {
 
-    // when clicked
     number.addEventListener("click", (e) => {
-        
-        // show the numbers in the display
-        display.textContent = display.textContent + e.target.textContent
+        append(e.target.textContent)
+        updateDisplay()
     })
 })
+
+// 6. Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
 
 operators.forEach(operator => {
 
     operator.addEventListener("click", (e) => {
-
-        // You’ll need to store the first number that is input into the calculator when a user presses an operator
-        firstNum = display.textContent
-        sign = e.target.textContent 
-
-        display.textContent = ""
+        chooseOperator(e.target.textContent)
+        updateDisplay()
     })
 })
 
 equals.addEventListener("click", (e) => {
-    secondNum = display.textContent
-    console.log(secondNum)
-
-    display.textContent = operate(sign, firstNum, secondNum)
+    result = operate(sign, prevOperand, currentOperand)
+    //console.log(result)
+    current.textContent = result
 })
