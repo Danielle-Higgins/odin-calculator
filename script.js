@@ -3,6 +3,7 @@ const operators = document.querySelectorAll(".operator")
 const previous = document.querySelector(".prev")
 const current = document.querySelector(".current")
 const equals = document.querySelector(".equals")
+const allClear = document.querySelector(".all-clear")
 
 // 1. Create functions for all of the basic math operators you typically find on simple calculators
 
@@ -19,6 +20,11 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
+    // Display a snarky error message if the user tries to divide by 0
+    if ((num1 / num2) === Infinity) {
+        alert("Really? You tried to divide by zero? 😂 Try again!")
+        return "undefined"
+    }
     return parseFloat(num1) / parseFloat(num2)
 }
 
@@ -56,6 +62,13 @@ function operate(operator, num1, num2) {
 }
 
 // 5. Create the functions that populate the display when you click the number buttons. You should be storing the ‘display value’ in a variable somewhere for use.
+
+function clear() {
+    currentOperand = ""
+    prevOperand = ""
+    sign = ""
+    result = 0
+}
 
 // appends the operands to each other
 function append(number) {
@@ -101,4 +114,9 @@ operators.forEach(operator => {
 equals.addEventListener("click", () => {
     result = operate(sign, prevOperand, currentOperand)
     current.textContent = result
+})
+
+allClear.addEventListener("click", () => {
+    clear()
+    updateDisplay()
 })
