@@ -22,6 +22,12 @@ function divide(num1, num2) {
     return parseFloat(num1) / parseFloat(num2)
 }
 
+// 2. Create three variables for each of the parts of a calculator operation. You’ll use these variables to update your display later.
+let prevOperand = ""
+let currentOperand = ""
+let sign = ""
+let result = 0
+
 // 3. Create a new function operate that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
 
 function operate(operator, num1, num2) {
@@ -40,29 +46,27 @@ function operate(operator, num1, num2) {
             result = divide(num1, num2)
             break
     }
+    // set currentOperand to be the result so we can operate on the result and not the initial currentOperand
+    currentOperand = result
     return result
 }
-
-// 2. Create three variables for each of the parts of a calculator operation. You’ll use these variables to update your display later.
-let prevOperand = ""
-let currentOperand = ""
-let sign = ""
-let result = 0
 
 // 5. Create the functions that populate the display when you click the number buttons. You should be storing the ‘display value’ in a variable somewhere for use.
 
 // appends the operands to each other
 function append(number) {
     currentOperand += number
-    //console.log(currentOperand)
 }
 
-// chooses the operator the user wants to use
 function chooseOperator(operator) {
+    // if the user doesn't click on a number, then they cant choose an operator
+    if (currentOperand === "") return
+
+    // if the user clicks on another operator before the equals sign, evaluate the current expression 
+    if (prevOperand !== "") operate(sign, prevOperand, currentOperand)
+
     sign = operator
-    //console.log(sign)
     prevOperand = currentOperand
-    //console.log(prevOperand)
     currentOperand = ""
 }
 
@@ -90,8 +94,7 @@ operators.forEach(operator => {
     })
 })
 
-equals.addEventListener("click", (e) => {
+equals.addEventListener("click", () => {
     result = operate(sign, prevOperand, currentOperand)
-    //console.log(result)
     current.textContent = result
 })
