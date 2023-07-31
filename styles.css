@@ -66,16 +66,32 @@ body {
     background-color: #a44322;
 }
 
+.all-clear:hover {
+    background-color: darkred;
+}
+
 .delete {
     background-color: #155e89;
+}
+
+.delete:hover {
+    background-color: darkblue;
 }
 
 .number, .decimal {
     background-color: #4a478a;
 }
 
+.number:hover, .decimal:hover {
+    background-color: #1a2c80;
+}
+
 .operator, .equals {
     background-color: #f8bc04;
+}
+
+.operator:hover, .equals:hover {
+    background-color: #FFD580;
 }
 
 /* Styles for the footer */
