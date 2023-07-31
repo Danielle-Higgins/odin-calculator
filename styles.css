@@ -36,11 +36,12 @@ body {
 
 .display .prev {
     font-size: 20px;
-    margin-bottom: 25px;
+    margin: 5px 10px 20px 0;
 }
 
 .display .current {
     font-size: 35px;
+    margin-right: 10px;
 }
 
 /* Styles for the buttons */

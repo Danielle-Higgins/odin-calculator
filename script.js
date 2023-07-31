@@ -20,12 +20,20 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
+    let answer = parseFloat(num1) / parseFloat(num2)
+    
     // Display a snarky error message if the user tries to divide by 0
-    if ((num1 / num2) === Infinity) {
+    if (answer === Infinity) {
         alert("Really? You tried to divide by zero? 😂 Try again!")
         return "undefined"
     }
-    return parseFloat(num1) / parseFloat(num2)
+
+    // You should round answers with long decimals so that they don’t overflow the screen.
+    if (answer % 1 !== 0) {
+        answer = answer.toFixed(3)
+    }
+
+    return answer
 }
 
 // 2. Create three variables for each of the parts of a calculator operation. You’ll use these variables to update your display later.
@@ -63,6 +71,7 @@ function operate(operator, num1, num2) {
 
 // 5. Create the functions that populate the display when you click the number buttons. You should be storing the ‘display value’ in a variable somewhere for use.
 
+// reset everything
 function clear() {
     currentOperand = ""
     prevOperand = ""
@@ -89,7 +98,11 @@ function chooseOperator(operator) {
 
 // update the display
 function updateDisplay() {
-    current.textContent = currentOperand
+    if (currentOperand === "") {
+        current.textContent = "0"
+    } else {
+        current.textContent = currentOperand
+    }
     previous.textContent = prevOperand + " " + sign + " " + currentOperand
 }
 
