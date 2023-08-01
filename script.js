@@ -1,4 +1,3 @@
-// TODO: Make sure the user cant type more than one decimal
 // TODO: Add keyboard support!
 
 const numbers = document.querySelectorAll(".number")
@@ -98,7 +97,8 @@ function clear() {
 // Add a “backspace” button, so the user can undo if they click the wrong number.
 function backspace() {
     // slice off last character
-    currentOperand = currentOperand.slice(0, -1)
+    if (currentOperand[currentOperand.length - 1] === ".") decimal.disabled = false
+    currentOperand = currentOperand.substring(0, currentOperand.length - 1)
 }
 
 // appends the operands to each other
@@ -116,6 +116,7 @@ function chooseOperator(operator) {
     sign = operator
     prevOperand = currentOperand
     currentOperand = ""
+    decimal.disabled = false
 }
 
 // update the display
@@ -129,7 +130,7 @@ function updateDisplay() {
 }
 
 numbers.forEach(number => {
-    
+
     number.addEventListener("click", (e) => {
         append(e.target.textContent)
         updateDisplay()
