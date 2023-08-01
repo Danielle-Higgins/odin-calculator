@@ -95,7 +95,7 @@ function clear() {
 
 // Add a “backspace” button, so the user can undo if they click the wrong number.
 function backspace() {
-    currentOperand = ""
+    currentOperand = currentOperand.slice(0, -1)
 }
 
 // appends the operands to each other
