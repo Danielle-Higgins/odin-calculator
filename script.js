@@ -66,6 +66,16 @@ function mod(num1, num2) {
     return answer
 }
 
+function power(num1, num2) {
+    let answer = parseFloat(num1) ** parseFloat(num2)
+
+    if (answer % 1 !== 0) {
+        answer = answer.toFixed(2)
+    }
+
+    return answer
+}
+
 // 2. Create three variables for each of the parts of a calculator operation. You’ll use these variables to update your display later.
 let prevOperand = ""
 let currentOperand = ""
@@ -95,6 +105,9 @@ function operate(operator, num1, num2) {
             break
         case "%":
             answer = mod(num1, num2)
+            break
+        case "^":
+            answer = power(num1, num2)
             break
     }
     // set currentOperand to be the result so we can operate on the result and not the initial currentOperand
@@ -199,7 +212,7 @@ decimal.addEventListener("click", (e) => {
 document.addEventListener("keydown", (e) => {
     let key = document.querySelector(`.number[data-key=${e.code}]`)
 
-    if (e.code === "Slash" || e.code === "Minus" || (e.shiftKey && e.code === "Digit8") || (e.shiftKey && e.code === "Equal") || (e.shiftKey && e.code === "Digit5")) {
+    if (e.code === "Slash" || e.code === "Minus" || (e.shiftKey && e.code === "Digit8") || (e.shiftKey && e.code === "Equal") || (e.shiftKey && e.code === "Digit5") || (e.shiftKey && e.code === "Digit6")) {
         key = document.querySelector(`.operator[data-key=${e.code}]`)
     } else if (e.code === "Enter") {
         key = document.querySelector(`.equals[data-key=${e.code}]`)
