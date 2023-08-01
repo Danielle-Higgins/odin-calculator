@@ -1,9 +1,13 @@
+// TODO: Make sure the user cant type more than one decimal
+// TODO: Add keyboard support!
+
 const numbers = document.querySelectorAll(".number")
 const operators = document.querySelectorAll(".operator")
 const previous = document.querySelector(".prev")
 const current = document.querySelector(".current")
 const equals = document.querySelector(".equals")
 const allClear = document.querySelector(".all-clear")
+const deleteButton = document.querySelector(".delete")
 
 // 1. Create functions for all of the basic math operators you typically find on simple calculators
 
@@ -89,6 +93,11 @@ function clear() {
     result = 0
 }
 
+// Add a “backspace” button, so the user can undo if they click the wrong number.
+function backspace() {
+    currentOperand = ""
+}
+
 // appends the operands to each other
 function append(number) {
     currentOperand += number
@@ -141,5 +150,10 @@ equals.addEventListener("click", () => {
 
 allClear.addEventListener("click", () => {
     clear()
+    updateDisplay()
+})
+
+deleteButton.addEventListener("click", () => {
+    backspace()
     updateDisplay()
 })
