@@ -12,11 +12,23 @@ const decimal = document.querySelector(".decimal")
 // 1. Create functions for all of the basic math operators you typically find on simple calculators
 
 function add(num1, num2) {
-    return parseFloat(num1) + parseFloat(num2)
+    let answer = parseFloat(num1) + parseFloat(num2)
+
+    if (answer % 1 !== 0) {
+        answer = answer.toFixed(2)
+    }
+
+    return answer
 }
 
 function subtract(num1, num2) {
-    return parseFloat(num1) - parseFloat(num2)
+    let answer = parseFloat(num1) - parseFloat(num2)
+
+    if (answer % 1 !== 0) {
+        answer = answer.toFixed(2)
+    }
+
+    return answer
 }
 
 function multiply(num1, num2) {
@@ -116,6 +128,8 @@ function chooseOperator(operator) {
     sign = operator
     prevOperand = currentOperand
     currentOperand = ""
+
+    // each time currentOperand is empty, we can click on the decimal button
     decimal.disabled = false
 }
 
