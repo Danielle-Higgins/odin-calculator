@@ -13,3 +13,4 @@ Skills I will have demonstrated once completed:
     - Events
 
 ## Thoughts
+This project was pretty hard for me, but I learned a lot! This was a really good project to do as a beginner because it pushed me to think and problem solve. It also taught me how to be a good googler lol. If I didn't know something, I had to look it up, but it allowed me to learn the things I didn't know how to do. Now I know how to do them! I can't wait to learn more while continuing through TOP!
