@@ -79,11 +79,11 @@ body {
     background-color: darkblue;
 }
 
-.number, .decimal {
+.number {
     background-color: #4a478a;
 }
 
-.number:hover, .decimal:hover {
+.number:hover {
     background-color: #1a2c80;
 }
 
