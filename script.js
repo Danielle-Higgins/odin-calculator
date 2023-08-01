@@ -16,7 +16,13 @@ function subtract(num1, num2) {
 }
 
 function multiply(num1, num2) {
-    return parseFloat(num1) * parseFloat(num2)
+    let answer = parseFloat(num1) * parseFloat(num2)
+
+    if (answer % 1 !== 0) {
+        answer = answer.toFixed(2)
+    }
+
+    return answer
 }
 
 function divide(num1, num2) {
@@ -30,7 +36,7 @@ function divide(num1, num2) {
 
     // You should round answers with long decimals so that they don’t overflow the screen.
     if (answer % 1 !== 0) {
-        answer = answer.toFixed(3)
+        answer = answer.toFixed(2)
     }
 
     return answer
