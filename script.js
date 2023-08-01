@@ -56,6 +56,16 @@ function divide(num1, num2) {
     return answer
 }
 
+function mod(num1, num2) {
+    let answer = parseFloat(num1) % parseFloat(num2)
+
+    if (answer % 1 !== 0) {
+        answer = answer.toFixed(2)
+    }
+
+    return answer
+}
+
 // 2. Create three variables for each of the parts of a calculator operation. You’ll use these variables to update your display later.
 let prevOperand = ""
 let currentOperand = ""
@@ -83,6 +93,9 @@ function operate(operator, num1, num2) {
         case "/":
             answer = divide(num1, num2)
             break
+        case "%":
+            answer = mod(num1, num2)
+            break
     }
     // set currentOperand to be the result so we can operate on the result and not the initial currentOperand
     currentOperand = answer
@@ -106,8 +119,9 @@ function clear() {
 
 // Add a “backspace” button, so the user can undo if they click the wrong number.
 function backspace() {
-    // slice off last character
     if (currentOperand[currentOperand.length - 1] === ".") decimal.disabled = false
+
+    // slice off last character
     currentOperand = currentOperand.substring(0, currentOperand.length - 1)
 }
 
@@ -185,7 +199,7 @@ decimal.addEventListener("click", (e) => {
 document.addEventListener("keydown", (e) => {
     let key = document.querySelector(`.number[data-key=${e.code}]`)
 
-    if (e.code === "Slash" || e.code === "Minus" || (e.shiftKey && e.code === "Digit8") || (e.shiftKey && e.code === "Equal")) {
+    if (e.code === "Slash" || e.code === "Minus" || (e.shiftKey && e.code === "Digit8") || (e.shiftKey && e.code === "Equal") || (e.shiftKey && e.code === "Digit5")) {
         key = document.querySelector(`.operator[data-key=${e.code}]`)
     } else if (e.code === "Enter") {
         key = document.querySelector(`.equals[data-key=${e.code}]`)
