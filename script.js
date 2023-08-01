@@ -8,6 +8,7 @@ const current = document.querySelector(".current")
 const equals = document.querySelector(".equals")
 const allClear = document.querySelector(".all-clear")
 const deleteButton = document.querySelector(".delete")
+const decimal = document.querySelector(".decimal")
 
 // 1. Create functions for all of the basic math operators you typically find on simple calculators
 
@@ -55,32 +56,32 @@ let result = 0
 // 3. Create a new function operate that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
 
 function operate(operator, num1, num2) {
-    let result = 0
+    let answer = 0
 
     // Pressing = before entering all of the numbers or an operator could cause problems!
     if (num1 === "" || num2 === "") return
 
     switch(operator) {
         case "+":
-            result = add(num1, num2)
+            answer = add(num1, num2)
             break
         case "-":
-            result = subtract(num1, num2)
+            answer = subtract(num1, num2)
             break
         case "*":
-            result = multiply(num1, num2)
+            answer = multiply(num1, num2)
             break
         case "/":
-            result = divide(num1, num2)
+            answer = divide(num1, num2)
             break
     }
     // set currentOperand to be the result so we can operate on the result and not the initial currentOperand
-    currentOperand = result
+    currentOperand = answer
     
     // set prevOperand to be empty so after equals sign we can evaluate the correct results
     prevOperand = ""
 
-    return result
+    return answer
 }
 
 // 5. Create the functions that populate the display when you click the number buttons. You should be storing the ‘display value’ in a variable somewhere for use.
@@ -91,10 +92,12 @@ function clear() {
     prevOperand = ""
     sign = ""
     result = 0
+    decimal.disabled = false
 }
 
 // Add a “backspace” button, so the user can undo if they click the wrong number.
 function backspace() {
+    // slice off last character
     currentOperand = currentOperand.slice(0, -1)
 }
 
@@ -126,7 +129,7 @@ function updateDisplay() {
 }
 
 numbers.forEach(number => {
-
+    
     number.addEventListener("click", (e) => {
         append(e.target.textContent)
         updateDisplay()
@@ -156,4 +159,12 @@ allClear.addEventListener("click", () => {
 deleteButton.addEventListener("click", () => {
     backspace()
     updateDisplay()
+})
+
+decimal.addEventListener("click", (e) => {
+    append(e.target.textContent)
+    updateDisplay()
+
+    // disable the decimal button if there’s already one in the display
+    decimal.disabled = true
 })
