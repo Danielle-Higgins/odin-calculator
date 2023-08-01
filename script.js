@@ -1,5 +1,3 @@
-// TODO: Add keyboard support!
-
 const numbers = document.querySelectorAll(".number")
 const operators = document.querySelectorAll(".operator")
 const previous = document.querySelector(".prev")
@@ -144,7 +142,6 @@ function updateDisplay() {
 }
 
 numbers.forEach(number => {
-
     number.addEventListener("click", (e) => {
         append(e.target.textContent)
         updateDisplay()
@@ -182,4 +179,26 @@ decimal.addEventListener("click", (e) => {
 
     // disable the decimal button if there’s already one in the display
     decimal.disabled = true
+})
+
+// Add keyboard support!
+document.addEventListener("keydown", (e) => {
+    let key = document.querySelector(`.number[data-key=${e.code}]`)
+
+    if (e.code === "Slash" || e.code === "Minus" || (e.shiftKey && e.code === "Digit8") || (e.shiftKey && e.code === "Equal")) {
+        key = document.querySelector(`.operator[data-key=${e.code}]`)
+    } else if (e.code === "Enter") {
+        key = document.querySelector(`.equals[data-key=${e.code}]`)
+    } else if (e.code === "Backspace") {
+        key = document.querySelector(`.delete[data-key=${e.code}]`)
+    } else if (e.code === "Period") {
+        key = document.querySelector(`.decimal[data-key=${e.code}]`)
+    }
+
+    if (!key) return
+
+    // console.log(key)
+
+    // method simulates a mouse click on an element.
+    key.click()
 })
