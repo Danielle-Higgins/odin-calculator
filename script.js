@@ -46,6 +46,10 @@ let result = 0
 
 function operate(operator, num1, num2) {
     let result = 0
+
+    // Pressing = before entering all of the numbers or an operator could cause problems!
+    if (num1 === "" || num2 === "") return
+
     switch(operator) {
         case "+":
             result = add(num1, num2)
