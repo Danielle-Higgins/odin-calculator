@@ -20,4 +20,4 @@ If/when I improve this project, I would start by either removing the footer or p
 
 ## Lessons Learned:
 
-I got more practice with problem solving. Separation of concerns.
+I got more practice with problem solving. Separation of concerns. I also learned how to align the buttons using flexbox instead of using css grid.
