@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: rgb(17, 19, 23);
+  font-family: "Space Grotesk", Arial, Helvetica, sans-serif;
+  color: #fff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Calculator Styles */
+.calculator {
+  background-color: rgb(26, 27, 33);
+  width: 500px;
+  max-width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 1px 0px rgba(255, 255, 255, 0.1) inset,
+    0 12px 24px -10px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(255, 255, 255, 0.03);
+}
+
+.calculator .display input {
+  display: block;
+  width: 100%;
+  height: 200px;
+  color: #fff;
+  background-color: #000;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 40px;
+  text-align: end;
+  caret-color: transparent;
+  padding: 0 15px;
+  margin-top: 25px;
+}
