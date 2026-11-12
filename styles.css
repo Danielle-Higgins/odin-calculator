@@ -37,7 +37,6 @@ body {
 }
 
 .calculator .display input {
-  display: block;
   width: 100%;
   height: 200px;
   color: #fff;
@@ -49,5 +48,51 @@ body {
   text-align: end;
   caret-color: transparent;
   padding: 0 15px;
-  margin-top: 25px;
+  margin: 25px 0 40px;
+}
+
+.calculator .buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.calculator .buttons button {
+  background-color: rgb(52, 53, 58);
+  color: #fff;
+  border: none;
+  padding: 20px 30px;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 1px 0px rgba(255, 255, 255, 0.1) inset,
+    0 12px 24px -10px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(255, 255, 255, 0.03);
+}
+
+.calculator .buttons .ac {
+  text-transform: uppercase;
+  color: rgb(242, 163, 60);
+}
+
+.calculator .buttons .operator {
+  color: rgb(242, 163, 60);
+}
+
+.calculator .buttons .number,
+.calculator .buttons .decimal {
+  background-color: rgb(30, 32, 37);
+}
+
+.calculator .buttons .zero {
+  grid-column: span 2;
+}
+
+.calculator .buttons .equal {
+  background-color: rgb(242, 163, 60);
+  color: #000;
 }
