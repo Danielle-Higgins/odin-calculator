@@ -19,3 +19,10 @@ function divide(num1, num2) {
   if (!Number.isFinite(quotient)) return;
   return quotient;
 }
+
+function multiply(num1, num2) {
+  const product = parseFloat(num1) * parseFloat(num2);
+
+  if (!Number.isFinite(product)) return;
+  return product;
+}
