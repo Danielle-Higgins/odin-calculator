@@ -5,3 +5,10 @@ function add(num1, num2) {
   if (!Number.isFinite(sum)) return;
   return sum;
 }
+
+function subtract(num1, num2) {
+  const difference = parseFloat(num1) - parseFloat(num2);
+
+  if (!Number.isFinite(difference)) return;
+  return difference;
+}
