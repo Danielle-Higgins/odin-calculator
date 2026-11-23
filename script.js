@@ -64,7 +64,7 @@ function clear() {
   secondNum = "";
   operator = "";
   answer = "";
-  display.value = "";
+  display.value = "0";
 }
 
 buttonContainer.addEventListener("click", (e) => {
@@ -88,8 +88,13 @@ buttonContainer.addEventListener("click", (e) => {
   if (btn.classList.contains("operator")) {
     if (firstNum === "") return;
     if (operator !== "") {
+      if (answer === "") {
+        answer = operate(operator, firstNum, secondNum);
+      }
+
       firstNum = answer;
       secondNum = "";
+      answer = "";
     }
     operator = btn.textContent;
     updateDisplay();
