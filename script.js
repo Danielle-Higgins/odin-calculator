@@ -23,6 +23,11 @@ function subtract(num1, num2) {
 }
 
 function divide(num1, num2) {
+  if (parseFloat(num2) === 0) {
+    alert("You Crazy?");
+    return 0;
+  }
+
   const quotient = parseFloat(num1) / parseFloat(num2);
 
   if (!Number.isFinite(quotient)) return;
@@ -75,6 +80,9 @@ buttonContainer.addEventListener("click", (e) => {
 
   // handle number clicks
   if (btn.classList.contains("number")) {
+    // if number was clicked before evaluating an expression
+    if (answer) clear();
+
     if (operator === "") {
       firstNum += btn.textContent;
       updateDisplay();
