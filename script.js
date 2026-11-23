@@ -1,9 +1,11 @@
 const display = document.getElementById("display");
 const buttonContainer = document.querySelector(".buttons");
+const allClear = document.querySelector(".ac");
 
 let firstNum = "";
 let operator = "";
 let secondNum = "";
+let answer = "";
 
 function add(num1, num2) {
   const sum = parseFloat(num1) + parseFloat(num2);
@@ -35,22 +37,34 @@ function multiply(num1, num2) {
 }
 
 function operate(op, num1, num2) {
-  let value = 0;
+  let result = 0;
   switch (op) {
     case "+":
-      value = add(num1, num2);
+      result = add(num1, num2);
       break;
     case "-":
-      value = subtract(num1, num2);
+      result = subtract(num1, num2);
       break;
-    case "*":
-      value = multiply(num1, num2);
+    case "x":
+      result = multiply(num1, num2);
       break;
     case "/":
-      value = divide(num1, num2);
+      result = divide(num1, num2);
       break;
   }
-  return value;
+  return result;
+}
+
+function updateDisplay() {
+  display.value = firstNum + "" + operator + "" + secondNum;
+}
+
+function clear() {
+  firstNum = "";
+  secondNum = "";
+  operator = "";
+  answer = "";
+  display.value = "";
 }
 
 buttonContainer.addEventListener("click", (e) => {
@@ -63,16 +77,30 @@ buttonContainer.addEventListener("click", (e) => {
   if (btn.classList.contains("number")) {
     if (operator === "") {
       firstNum += btn.textContent;
-      display.value = firstNum;
+      updateDisplay();
     } else {
       secondNum += btn.textContent;
-      display.value = secondNum;
+      updateDisplay();
     }
   }
 
   // handle operator clicks
   if (btn.classList.contains("operator")) {
     if (firstNum === "") return;
+    if (operator !== "") {
+      firstNum = answer;
+      secondNum = "";
+    }
     operator = btn.textContent;
+    updateDisplay();
+  }
+
+  // handle equal sign click
+  if (btn.classList.contains("equal")) {
+    if (secondNum === "") return;
+    answer = operate(operator, firstNum, secondNum);
+    display.value = answer;
   }
 });
+
+allClear.addEventListener("click", clear);
