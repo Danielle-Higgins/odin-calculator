@@ -12,6 +12,7 @@ function add(num1, num2) {
 
   // check if sum is a valid number or float
   if (!Number.isFinite(sum)) return;
+
   return sum;
 }
 
@@ -19,6 +20,7 @@ function subtract(num1, num2) {
   const difference = parseFloat(num1) - parseFloat(num2);
 
   if (!Number.isFinite(difference)) return;
+
   return difference;
 }
 
@@ -31,6 +33,7 @@ function divide(num1, num2) {
   const quotient = parseFloat(num1) / parseFloat(num2);
 
   if (!Number.isFinite(quotient)) return;
+
   return quotient;
 }
 
@@ -38,7 +41,12 @@ function multiply(num1, num2) {
   const product = parseFloat(num1) * parseFloat(num2);
 
   if (!Number.isFinite(product)) return;
+
   return product;
+}
+
+function divideBy100(num1) {
+  return parseFloat(num1) / 100;
 }
 
 function operate(op, num1, num2) {
@@ -55,6 +63,9 @@ function operate(op, num1, num2) {
       break;
     case "/":
       result = divide(num1, num2);
+      break;
+    case "%":
+      result = divideBy100(num1);
       break;
   }
   return result;
@@ -80,7 +91,7 @@ buttonContainer.addEventListener("click", (e) => {
 
   // handle number clicks
   if (btn.classList.contains("number")) {
-    // if number was clicked before evaluating an expression
+    // if a number was clicked immediately after a calculation
     if (answer) clear();
 
     if (operator === "") {
@@ -95,7 +106,14 @@ buttonContainer.addEventListener("click", (e) => {
   // handle operator clicks
   if (btn.classList.contains("operator")) {
     if (firstNum === "") return;
-    if (operator !== "") {
+
+    // gave conditional a label
+    checkOp: if (operator !== "") {
+      // use last operator that was pressed
+      if (secondNum === "") {
+        break checkOp;
+      }
+
       if (answer === "") {
         answer = operate(operator, firstNum, secondNum);
       }
@@ -104,13 +122,26 @@ buttonContainer.addEventListener("click", (e) => {
       secondNum = "";
       answer = "";
     }
+
     operator = btn.textContent;
     updateDisplay();
+  }
+
+  // handle percent sign click
+  if (btn.classList.contains("hundred")) {
+    if (firstNum === "") return;
+
+    answer = operate("%", firstNum, secondNum);
+    display.value = answer;
+
+    firstNum = answer;
+    answer = "";
   }
 
   // handle equal sign click
   if (btn.classList.contains("equal")) {
     if (secondNum === "") return;
+
     answer = operate(operator, firstNum, secondNum);
     display.value = answer;
   }
