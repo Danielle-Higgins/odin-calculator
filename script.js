@@ -49,6 +49,13 @@ function divideBy100(num1) {
   return parseFloat(num1) / 100;
 }
 
+function negate(num) {
+  num = parseFloat(num);
+
+  if (num > 0) return -num;
+  return num;
+}
+
 function operate(op, num1, num2) {
   let result = 0;
   switch (op) {
@@ -136,6 +143,26 @@ buttonContainer.addEventListener("click", (e) => {
 
     firstNum = answer;
     answer = "";
+  }
+
+  // handle the negate sign click
+  if (btn.classList.contains("negate")) {
+    if (operator === "") {
+      if (firstNum === "") return;
+
+      firstNum = negate(firstNum);
+      updateDisplay();
+    } else {
+      if (secondNum === "") return;
+
+      secondNum = negate(secondNum);
+      updateDisplay();
+    }
+
+    if (answer) {
+      answer = negate(answer);
+      display.value = answer;
+    }
   }
 
   // handle equal sign click

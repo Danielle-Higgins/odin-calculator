@@ -96,3 +96,7 @@ body {
   background-color: rgb(242, 163, 60);
   color: #000;
 }
+
+.calculator .buttons .negate i {
+  pointer-events: none;
+}
