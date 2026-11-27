@@ -1,11 +1,13 @@
 const display = document.getElementById("display");
 const buttonContainer = document.querySelector(".buttons");
 const allClear = document.querySelector(".ac");
+const decimalBtn = document.querySelector(".decimal");
 
 let firstNum = "";
 let operator = "";
 let secondNum = "";
 let answer = "";
+decimalBtn.disabled = false;
 
 function add(num1, num2) {
   const sum = parseFloat(num1) + parseFloat(num2);
@@ -13,7 +15,7 @@ function add(num1, num2) {
   // check if sum is a valid number or float
   if (!Number.isFinite(sum)) return;
 
-  return sum;
+  return Math.round(sum * 100) / 100; // round 2 decimal places
 }
 
 function subtract(num1, num2) {
@@ -21,7 +23,7 @@ function subtract(num1, num2) {
 
   if (!Number.isFinite(difference)) return;
 
-  return difference;
+  return Math.round(difference * 100) / 100;
 }
 
 function divide(num1, num2) {
@@ -34,7 +36,7 @@ function divide(num1, num2) {
 
   if (!Number.isFinite(quotient)) return;
 
-  return quotient;
+  return Math.round(quotient * 100) / 100;
 }
 
 function multiply(num1, num2) {
@@ -42,7 +44,7 @@ function multiply(num1, num2) {
 
   if (!Number.isFinite(product)) return;
 
-  return product;
+  return Math.round(product * 100) / 100;
 }
 
 function divideBy100(num1) {
@@ -88,6 +90,7 @@ function clear() {
   operator = "";
   answer = "";
   display.value = "0";
+  decimalBtn.disabled = false;
 }
 
 buttonContainer.addEventListener("click", (e) => {
@@ -131,6 +134,7 @@ buttonContainer.addEventListener("click", (e) => {
     }
 
     operator = btn.textContent;
+    decimalBtn.disabled = false;
     updateDisplay();
   }
 
@@ -175,3 +179,15 @@ buttonContainer.addEventListener("click", (e) => {
 });
 
 allClear.addEventListener("click", clear);
+
+decimalBtn.addEventListener("click", (e) => {
+  if (operator === "") {
+    firstNum += e.target.textContent;
+    updateDisplay();
+    decimalBtn.disabled = true;
+  } else {
+    secondNum += e.target.textContent;
+    updateDisplay();
+    decimalBtn.disabled = true;
+  }
+});
